@@ -8,3 +8,23 @@
 <%= button_to 'Vaciar carrito' , @cart, :method => :delete,:confirm => 'Esta seguro?' %>
 <%= link_to 'Editar', edit_cart_path(@cart) %> |
 <%= link_to 'Atrás', carts_path %>
+
+
+
+
+<%=  nested_form_for(@cart) do |f| %>
+
+  	<h3>  Lineas de venta</h3>
+   	<%= f.fields_for :line_items do |task| %>
+  		Cantidad de productos=> <%=f.label :quantity%>
+    	<%= task.text_field :quantity %>
+	   	<%= task.fields_for :product do |task2| %>
+	  		Cantidad de productos=> <%=task2.label :name%>
+	    	<%= task2.text_field :name %><br>
+	    	Precio de cada producto=> <%=task2.label :price%>
+	    	<%= task2.text_field :price %></br>
+	    	--------------------
+		<% end %>
+	<% end %>
+<% end %>
+
