@@ -6,6 +6,7 @@ gem 'pg'
 gem 'paperclip'
 gem 'strong_parameters'
 gem 'aws-sdk'
+gem 'devise',:git => "https://github.com/marionzumbado/Devise.git"
 
 
 #gem 'carmen-rails', '~> 1.0.0'

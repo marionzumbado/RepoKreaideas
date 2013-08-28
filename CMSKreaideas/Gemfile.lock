@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/marionzumbado/Devise.git
+  revision: 20258ec4ab7b2f1c35ffb8b7a8207870f96e6c16
+  specs:
+    devise (2.2.5)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (~> 3.1)
+      warden (~> 1.2.1)
+
 PATH
   remote: vendor/extensions
   specs:
@@ -51,7 +61,7 @@ GEM
       nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
     babosa (0.3.11)
-    bcrypt-ruby (3.1.1)
+    bcrypt-ruby (3.1.2)
     builder (3.0.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -66,11 +76,6 @@ GEM
     coffee-script-source (1.6.3)
     decorators (1.0.3)
       railties (>= 3.0.19, != 3.2.9, != 3.2.8, != 3.2.7, != 3.2.6, != 3.2.5, != 3.2.4, != 3.2.3, != 3.2.2, != 3.2.10, != 3.2.1, != 3.2.0, != 3.1.9, != 3.1.8, != 3.1.7, != 3.1.6, != 3.1.5, != 3.1.4, != 3.1.3, != 3.1.2, != 3.1.1, != 3.1.0)
-    devise (2.2.5)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (~> 3.1)
-      warden (~> 1.2.1)
     dragonfly (0.9.15)
       multi_json (~> 1.0)
       rack
@@ -219,6 +224,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   coffee-rails (~> 3.2.1)
+  devise!
   jquery-rails
   nested_form
   paperclip
