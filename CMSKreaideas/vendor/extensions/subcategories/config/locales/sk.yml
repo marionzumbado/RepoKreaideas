@@ -1,0 +1,28 @@
+sk:
+  refinery:
+    plugins:
+      subcategories:
+        title: Subcategories
+    subcategories:
+      admin:
+        subcategories:
+          actions:
+            create_new: Pridať Subcategory
+            reorder: Preusporiadať Subcategories
+            reorder_done: Koniec radenia Subcategories
+          records:
+            title: Subcategories
+            sorry_no_results: Ľutujeme, ale neboli nájdené žiadne výsledky.
+            no_items_yet: Nie sú vytvorené žiadne Subcategories. Kliknite na "Pridať Subcategory" pre pridanie prvého subcategory.
+          subcategory:
+            view_live_html: Zobraziť náhľad subcategory<br/><em>(otvorí sa v novom okne)</em>
+            edit: Upraviť subcategory
+            delete: Zmazať subcategory
+      subcategories:
+        show:
+          other: Daľšie Subcategories
+  activerecord:
+    attributes:
+      'refinery/subcategories/subcategory':
+        name: Name
+        category_id: Category

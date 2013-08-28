@@ -1,0 +1,15 @@
+<div id="user_nav">
+	<% if member_signed_in?%>
+	Inicio sesión como <%= current_member.email %> No es usted?
+	<%= link_to "Cerrar sesión", destroy_member_session_path, :method => :delete%>
+	<%else%>
+		<%= link_to "Registrarse", new_member_registration_path%> o
+		<%= link_to "Iniciar sesión", new_member_session_path%>
+	<%end%>
+
+	<% flash.each do |name,msg|%>
+		<%= content_tag :div , msg , :id => "flash_#{name}"%>
+	<%end%>
+
+
+</div>

@@ -1,0 +1,30 @@
+fr:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Bulletin
+            reorder: Réordonner les Bulletins
+            reorder_done: Fin de réordonnancement des Bulletins
+          records:
+            title: Bulletins
+            sorry_no_results: "Désolé ! Aucun résultat."
+            no_items_yet: 'Il n''y a actuellement aucun(e) Bulletin. Cliquer sur "Créer un(e) nouve(au/l/lle) Bulletin" pour créer votre premi(er/ère) bulletin.'
+          bulletin:
+            view_live_html: Voir ce(t/tte) bulletin <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) bulletin
+            delete: Supprimer définitivement ce(t/tte) bulletin
+      bulletins:
+        show:
+          other: Autres Bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

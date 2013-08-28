@@ -1,0 +1,36 @@
+<h1>Nuevo Boletín <%= @user %></h1>
+
+<%= form_for [refinery, :bulletins_admin, @bulletin] do |f| -%>
+  <%= render '/refinery/admin/error_messages',
+              :object => @bulletin,
+              :include_object_name => true %>
+
+  <div class='field'>
+    <%= f.label :title -%>
+    <%= f.text_field :title, :class => 'larger widest' -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :description -%>
+    <%= f.text_field :description -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :publicationday -%>
+    <%= f.date_select :publicationday -%>
+  </div>
+
+  <div class='field'>
+    
+    <%= f.text_field :user_id  ,:value => @user, :type =>'hidden',:disabled => "disabled"%>
+  </div>
+
+ 
+
+
+
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.bulletins.admin.bulletins.bulletin'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @bulletin.title) -%>
+<% end -%>

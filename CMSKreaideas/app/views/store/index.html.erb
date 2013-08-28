@@ -1,0 +1,39 @@
+
+<div id="user_nav">
+	<% if member_signed_in?%>
+	Inicio sesión como <%= current_member.email %> No es usted?
+	<%= link_to "Cerrar sesión", destroy_member_session_path, :method => :delete%>
+	<%else%>
+		<%= link_to "Registrarse", new_member_registration_path%> o
+		<%= link_to "Iniciar sesión", new_member_session_path%>
+	<%end%>
+
+	<% flash.each do |name,msg|%>
+		<%= content_tag :div , msg , :id => "flash_#{name}"%>
+	<%end%>
+
+
+</div>
+
+
+<h1>Productos Originales</h1>
+<p id="notice"><%= notice %></p>
+</br>
+<% @products.each do |product| %>
+----------------------------------------------
+
+<div><span class="name" >Nombre:  <%= product.name %></span></div>
+<div><span class="description" >Descripción:  <%= product.description %></span></div>
+<div><span class="price" >Precio: <%= number_to_currency(product.price) %></span></div>
+<div><span class="code" >Código: <%= product.code %></span></div>
+<div><span class="author" >Autor: <%= product.author %></span></div>
+<div><span class="exchange" >Cambio: <%= product.exchange %></span></div>
+<div><span class="bonus" >Bono: <%= product.bonus %></span></div>
+<div><span class="stock" >Stock: <%= product.stock %></span></div>
+<div><span class="subcategory" >Subcategoria: <%= product.subcategory.name %></span></div>
+<div><span class="category" >Categoria: <%= product.subcategory.category.name %></span></div>
+<%= button_to 'Añadir al carrito' , line_items_path(:product_id => product) %>
+
+</br></br>
+
+<% end %>

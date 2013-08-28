@@ -1,0 +1,31 @@
+es:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+#        article: masculino/femenino
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: Crear nuevo bulletin
+            reorder: Reordenar bulletins
+            reorder_done: Reordenación de bulletins completada
+          records:
+            title: Bulletins
+            sorry_no_results: Lo siento, no hay resultados
+            no_items_yet: No hay bulletins todavía. Pulsa en "Crear nuevo Bulletin" para crear tu primer bulletin.
+          bulletin:
+            view_live_html: Ver este bulletin como abierto al público <br/><em>(abre en ventana nueva)</em>
+            edit: Editar este bulletin
+            delete: Borrar este bulletin para siempre
+      bulletins:
+        show:
+          other: Otros bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

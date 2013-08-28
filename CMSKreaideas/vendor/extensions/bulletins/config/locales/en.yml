@@ -1,0 +1,30 @@
+en:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: Add New Bulletin
+            reorder: Reorder Bulletins
+            reorder_done: Done Reordering Bulletins
+          records:
+            title: Bulletins
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Bulletins yet. Click "Add New Bulletin" to add your first bulletin.
+          bulletin:
+            view_live_html: View this bulletin live <br/><em>(opens in a new window)</em>
+            edit: Edit this bulletin
+            delete: Remove this bulletin forever
+      bulletins:
+        show:
+          other: Other Bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

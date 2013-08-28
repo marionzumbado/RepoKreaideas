@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @kreaideasmail.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @kreaideasmail.email %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @kreaideasmail.message %>
+</p>
+
+
+<%= link_to 'Edit', edit_kreaideasmail_path(@kreaideasmail) %> |
+<%= link_to 'Back', kreaideasmails_path %>

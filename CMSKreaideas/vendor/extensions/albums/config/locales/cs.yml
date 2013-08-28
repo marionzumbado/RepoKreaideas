@@ -1,0 +1,29 @@
+cs:
+  refinery:
+    plugins:
+      albums:
+        title: Albums
+    albums:
+      admin:
+        albums:
+          actions:
+            create_new: Přidat Album
+            reorder: Řadit Albums
+            reorder_done: Konec řazení Albums
+          records:
+            title: Albums
+            sorry_no_results: Litujeme, ale nebyly nalezny žádné výsledky.
+            no_items_yet: Zatím nebyly vytvořeny žádné Albums. Zvolte "Přidat Album" pro přidání prvního album.
+          album:
+            view_live_html: Zobrazit náhled album<br/><em>(otevře se v novém okně)</em>
+            edit: Upravit album
+            delete: Smazat album
+      albums:
+        show:
+          other: Další Albums
+  activerecord:
+    attributes:
+      'refinery/albums/album':
+        name: Name
+        description: Description
+        imagen_id: Imagen

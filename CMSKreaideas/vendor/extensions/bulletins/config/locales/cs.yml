@@ -1,0 +1,30 @@
+cs:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: Přidat Bulletin
+            reorder: Řadit Bulletins
+            reorder_done: Konec řazení Bulletins
+          records:
+            title: Bulletins
+            sorry_no_results: Litujeme, ale nebyly nalezny žádné výsledky.
+            no_items_yet: Zatím nebyly vytvořeny žádné Bulletins. Zvolte "Přidat Bulletin" pro přidání prvního bulletin.
+          bulletin:
+            view_live_html: Zobrazit náhled bulletin<br/><em>(otevře se v novém okně)</em>
+            edit: Upravit bulletin
+            delete: Smazat bulletin
+      bulletins:
+        show:
+          other: Další Bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

@@ -1,0 +1,30 @@
+nl:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: Nieuwe Bulletin toevoegen
+            reorder: De volgorde van de Bulletins wijzigen
+            reorder_done: Klaar met het wijzingen van de van de Bulletin-volgorde
+          records:
+            title: Bulletins
+            sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+            no_items_yet: Er zijn nog geen Bulletins. Druk op 'Nieuwe Bulletin toevoegen' om de eerste toe te voegen.
+          bulletin:
+            view_live_html: Deze bulletin op de website bekijken <br/><em>(opent in een nieuw venster)</em>
+            edit: Bewerk deze bulletin
+            delete: Deze bulletin definitief verwijderen
+      bulletins:
+        show:
+          other: Andere Bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

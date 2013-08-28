@@ -1,0 +1,75 @@
+<% content_for :body_content_title do %>
+  <%= @product.name %>
+<% end %>
+
+<% content_for :body do %>
+  <section>
+    <h1>Nombre</h1>
+    <p>
+      <%=raw @product.name %>
+    </p>
+  </section>
+  <section>
+    <h1>Descripción</h1>
+    <p>
+      <%=raw @product.description %>
+    </p>
+  </section>
+  <section>
+    <h1>Precio</h1>
+    <p>
+      <%=raw @product.price %>
+    </p>
+  <section>
+    <h1>Código</h1>
+    <p>
+      <%=raw @product.code %>
+    </p>
+  </section>
+  <section>
+    <h1>Autor</h1>
+    <p>
+      <%=raw @product.author %>
+    </p>
+  </section>
+  <section>
+    <h1>Canje</h1>
+    <p>
+      <%=raw @product.exchange %>
+    </p>
+  </section>
+  <section>
+    <h1>Bono</h1>
+    <p>
+      <%=raw @product.bonus %>
+    </p>
+  </section>
+    <section>
+    <h1>Categoria</h1>
+    <p>
+      <%=raw @product.subcategory.category.name %>
+    </p>
+  </section>
+  <section>
+    <h1>Subcategoria</h1>
+    <p>
+      <%=raw @product.subcategory.name %>
+    </p>
+  </section>
+
+<% end %>
+
+<% content_for :side_body do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="products">
+      <% @products.each do |product| %>
+        <li>
+          <%= link_to product.name, refinery.products_product_path(product) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render '/refinery/content_page' %>

@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<% @cart.line_items.each do |item| %>
+<%= item.quantity%>*Producto:<%= item.product.name %></br>
+<% end %>
+
+
+<%= button_to 'Vaciar carrito' , @cart, :method => :delete,:confirm => 'Esta seguro?' %>
+<%= link_to 'Editar', edit_cart_path(@cart) %> |
+<%= link_to 'Atrás', carts_path %>

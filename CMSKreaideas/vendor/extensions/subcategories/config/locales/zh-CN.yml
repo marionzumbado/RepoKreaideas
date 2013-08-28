@@ -1,0 +1,30 @@
+zh-CN:
+  refinery:
+    plugins:
+      subcategories:
+        title: Subcategories
+    subcategories:
+      admin:
+        subcategories:
+          actions:
+            create_new: 建立新的 Subcategory
+            reorder: 对 Subcategories 重新排序
+            reorder_done: 对 Subcategories 的重新排序结束
+          records:
+            title: Subcategories
+            sorry_no_results: 对不起，未找到结果。 #Sorry! There are no results found.
+
+            # There are no Subcategories yet. Click "Add New Subcategory" to add your first subcategory.
+            no_items_yet: 目前没有 Subcategories . 点击 "Add New Subcategory" 创建一个subcategory.
+          subcategory:
+            view_live_html: 查看 subcategory 的最新内容.<br/><em>(新窗口中打开)</em>
+            edit: 编辑 subcategory
+            delete: 永久删除 subcategory
+      subcategories:
+        show:
+          other: 其他 Subcategories
+  activerecord:
+    attributes:
+      'refinery/subcategories/subcategory':
+        name: Name
+        category_id: Category

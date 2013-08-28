@@ -1,0 +1,59 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  devise:
+    confirmations:
+      confirmed: "Su cuenta a sido confirmada. Ha iniciado sesión."
+      send_instructions: " En unos minutos usted recibira un correo con instrucciones sobre como confirmar su cuenta."
+      send_paranoid_instructions: "Si su dirección de correo se encuentra en nuestra base de datos en unos minutos recibira un correo con instrucciones para confirmar su cuenta."
+    failure:
+      already_authenticated: "Usted a iniciado sesión."
+      inactive: "Su cuenta no ha sido activada todavia."
+      invalid: "Dirección de correo o contraseña incorrecta."
+      invalid_token: "Token de autenticación inválido."
+      locked: "Su cuenta ha sido bloqueada."
+      not_found_in_database: "  Dirección de correo o contraseña incorrecta."
+      timeout: "Su sesión ha expirado. Inicie sesión para continuar."
+      unauthenticated: "Usted necesita iniciar sesión para continuar."
+      unconfirmed: "Usted debe confirmar su cuenta para continuar."
+    mailer:
+      confirmation_instructions:
+        subject: "Instrucciones de confirmación"
+      reset_password_instructions:
+        subject: "Instrucciones para reestablecer contraseña"
+      unlock_instructions:
+        subject: "Instrucciones para desbloquear cuenta"
+    omniauth_callbacks:
+      failure: "No podemos autenticarlo desde %{kind} porque \"%{reason}\"."
+      success: "Autenticación exitosa desde la cuenta de %{kind}."
+    passwords:
+      no_token: "Usted no puede acceder a esta página sin un correo para reestablecer contraseña. Si usted recibio un correo para reestablecer la contraseña por favor asegurese de hacer uso del  URL proporcionado."
+      send_instructions: "Usted recibira en unos minutos un correo con instrucciones para reestablecer su contraseña."
+      send_paranoid_instructions: "Si su dirección de correo se encuentra en nuestra base de datos, en unos minutos recibira un link para la recuperación de su contraseña."
+      updated: "Su contraseña se ha cambiado correctamente. Ha iniciado sesión."
+      updated_not_active: "Su contraseña se ha cambiado correctamente."
+    registrations:
+      destroyed: "Su cuenta ha sido cancelada. Esperamos verle pronto."
+      signed_up: "Bienvenido! Ha iniciado sesión exitosamente."
+      signed_up_but_inactive: "Se ha registrado correctamente. Sin embargo, no ha podido iniciar sesión porque no ha activado su cuenta."
+      signed_up_but_locked: "Se ha registrado correctamente. Sin embargo, no ha podido iniciar sesión porque su cuenta esta bloqueada."
+      signed_up_but_unconfirmed: "Un mensaje con un link de confirmación se a enviado a su dirección de correo. Por favor ingrese al link para activar su cuenta."
+      update_needs_confirmation: "Ha actualizado su cuenta exitosamente, pero necesitamos verificar su nueva dirección de correo. Por favor revise si correo e ingrese al link de confirmación para finalizar la actualización de su nueva dirección de correo."
+      updated: "Ha actualizado su cuenta exitosamente."
+    sessions:
+      signed_in: "Inicio de sesión exitoso."
+      signed_out: "Cerró sesión exitosamente."
+    unlocks:
+      send_instructions: "En unos minutos recibira un correo con instrucciones para desbloquear su cuenta."
+      send_paranoid_instructions: "Si su cuenta existe en unos minutos recibira isntrucciones para desbloquear su cuenta."
+      unlocked: "Su cuenta a sido desbloqeuada, por favor inicie sesión para continuar."
+  errors:
+    messages:
+      already_confirmed: "a sido confirmada, por favor inicie sesión"
+      confirmation_period_expired: "debe ser solicitada dentro de %{period}, por favor solicite una nueva"
+      expired: "ha expirado, por favor solicite una nueva"
+      not_found: "no se a encontrado"
+      not_locked: "no esta bloqueada"
+      not_saved:
+        one: "1 error no permite que este Usuario sea guardado:"
+        other: "%{count} errores no permiten que este Usuario sea guardado:"

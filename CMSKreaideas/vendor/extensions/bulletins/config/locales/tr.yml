@@ -1,0 +1,30 @@
+tr:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: Yeni Ekle Bulletin
+            reorder: Tekrar sirala Bulletins
+            reorder_done: Tekrar siralama tamamlandiBulletins
+          records:
+            title: Bulletins
+            sorry_no_results: Uzgunum! Herhangi bir sonuc bulunamadi.
+            no_items_yet: Herhangi bir Bulletins yok henuz.  Tikla "Yeni Ekle Bulletin" eklemek senin ilk bulletin.
+          bulletin:
+            view_live_html: Bunu canlu bulletin goruntule <br/><em>(yeni bir pencerede acar)</em>
+            edit: Bunu Duzenle bulletin
+            delete: Bunu Sil bulletin sonsuza dek
+      bulletins:
+        show:
+          other: Diger Bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

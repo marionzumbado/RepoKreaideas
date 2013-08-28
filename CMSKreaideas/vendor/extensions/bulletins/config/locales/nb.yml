@@ -1,0 +1,30 @@
+nb:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: Lag en ny Bulletin
+            reorder: Endre rekkefølgen på Bulletins
+            reorder_done: Ferdig å endre rekkefølgen Bulletins
+          records:
+            title: Bulletins
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Bulletins enda. Klikk på "Lag en ny Bulletin" for å legge til din første bulletin.
+          bulletin:
+            view_live_html: Vis hvordan denne bulletin ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne bulletin
+            delete: Fjern denne bulletin permanent
+      bulletins:
+        show:
+          other: Andre Bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

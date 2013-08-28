@@ -1,0 +1,326 @@
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag :defaults, "nested_form" %>
+<script type="text/javascript">
+  function delete_file()
+  {
+    //funcion para borrarle un archivo de descarga a un producto
+    document.getElementById("product_delete_attach").checked=true;
+    var form= document.getElementById("actualfile");
+    document.getElementById("delete_file_link").style.visibility="hidden";
+    document.getElementById("change_file_link").style.visibility="hidden";
+    document.getElementById("product_attach").style.visibility="hidden";
+    var addfile= document.createElement("a");
+    addfile.innerHTML = "Agregar Archivo";
+    addfile.id="addfile";
+    addfile.setAttribute("onclick","add_new_file();");
+    form.appendChild(addfile);
+  }
+</script>
+<script type="text/javascript">
+  function add_new_file()
+  {
+    //funcion para agregar un archivo a un producto que ya tenia
+    document.getElementById("product_delete_attach").checked=false;
+    var attachfile=document.getElementById("product_attach");
+    attachfile.type="file";
+    attachfile.disabled=false;
+    document.getElementById("product_attach").style.visibility="visible";
+    document.getElementById("addfile").style.visibility="hidden";
+    var cancelbrowseinnew= document.createElement("a");
+    cancelbrowseinnew.innerHTML = "Cancelar";
+    cancelbrowseinnew.id="cancelbrowseinnew";
+    cancelbrowseinnew.setAttribute("onclick","cancel_browse_in_new();");
+    var form= document.getElementById("actualfile");
+    form.appendChild(cancelbrowseinnew);
+
+  }
+</script>
+<script type="text/javascript">
+
+  function add_first_file()
+  {
+    //agregar un archivo a un producto que no tenia
+    document.getElementById("product_delete_attach").checked=false;
+    var attachfile= document.createElement("input");
+    attachfile.id="product_attach"
+    attachfile.type="file";
+    attachfile.name="product[attach]";
+
+
+
+
+
+    document.getElementById("add_file_link").style.visibility="hidden";
+    var cancelbrowseinfirst= document.createElement("a");
+    cancelbrowseinfirst.innerHTML = "Cancelar";
+    cancelbrowseinfirst.id="cancelbrowseinfirst";
+    cancelbrowseinfirst.setAttribute("onclick","cancel_browse_in_first();");
+    var form= document.getElementById("actualfile");
+    form.appendChild(attachfile);
+    form.appendChild(cancelbrowseinfirst);
+
+  }
+</script>
+<script type="text/javascript">
+  function cancel_browse_in_edit()
+  {
+    //alert("hola ya casito cancelam,os un archivo");
+    var attachfile=document.getElementById("product_attach");
+    attachfile.type="text";
+    attachfile.disabled=true;
+    document.getElementById("delete_file_link").style.visibility="visible";
+    document.getElementById("change_file_link").style.visibility="visible";
+    
+    var cancelbrowse=document.getElementById("cancelbrowse");
+    var form= document.getElementById("actualfile");
+    form.removeChild(cancelbrowse);
+
+  }
+</script>
+
+<script type="text/javascript">
+  function cancel_browse_in_first()
+  {
+    //alert("hola ya casito cancelam,os un archivo 2");
+
+    document.getElementById("product_delete_attach").checked=true;
+    var cancelbrowseinfirst=document.getElementById("cancelbrowseinfirst");
+    var form= document.getElementById("actualfile");
+    form.removeChild(cancelbrowseinfirst);
+    document.getElementById("product_attach").style.visibility="hidden";
+    document.getElementById("add_file_link").style.visibility="visible";
+    var attachfile=  document.getElementById("product_attach");
+    form.removeChild(attachfile);
+
+  }
+</script>
+
+
+<script type="text/javascript">
+  function cancel_browse_in_new()
+  {
+    //alert("hola ya casito cancelam,os un archivo 2");
+
+   document.getElementById("product_delete_attach").checked=true;
+    var cancelbrowseinnew=document.getElementById("cancelbrowseinnew");
+    var form= document.getElementById("actualfile");
+    form.removeChild(cancelbrowseinnew);
+    document.getElementById("product_attach").style.visibility="hidden";
+    document.getElementById("addfile").style.visibility="visible";
+
+  }
+</script>
+
+
+
+
+
+<script type="text/javascript">
+  function change_file()
+  {
+    //alert("hola ya casito cambiamos un archivo");
+    document.getElementById("product_attach").style.visibility="visible";
+    var attachfile=document.getElementById("product_attach");
+    attachfile.type="file";
+    attachfile.disabled=false;
+    document.getElementById("delete_file_link").style.visibility="hidden";
+    document.getElementById("change_file_link").style.visibility="hidden";
+    var form= document.getElementById("actualfile");
+    var cancelbrowse= document.createElement("a");
+    cancelbrowse.innerHTML = "Cancelar";
+    cancelbrowse.id="cancelbrowse";
+    cancelbrowse.setAttribute("onclick","cancel_browse_in_edit();");
+    form.appendChild(cancelbrowse);
+  }
+</script>
+
+<script type="text/javascript">
+//script para traer las categorias y las subcategorias de la primera cateogoria
+    $(document).ready(function(){
+        //document.getElementById("product_delete_attach").style.visibility="hidden";
+       //document.getElementById("product_attach").style.visibility="hidden";
+        $("select#category_category_id").change(function(){
+            var id_value_string = $(this).val();
+            if (id_value_string == "") {
+                // if the id is empty remove all the sub_selection options from being selectable and do not do any ajax
+                $("select#product_subcategory_id").remove();
+                var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                $(row).appendTo("product_subcategory_id");
+            }
+            else {
+                // Send the request and update sub category dropdownFADD_NEW_FILE
+                $.ajax({
+                    dataType: "json",
+                    cache: false,
+                    url: '/subcategories/search_by_category/'+id_value_string+'.json' ,
+                    data:  id_value_string,
+                    timeout: 2000,
+                    error: function(XMLHttpRequest, errorTextStatus, error){
+                        alert("Failed to submit : "+ errorTextStatus+" ;"+error);
+                    },
+                    success: function(data){                    
+                        // Clear all options from sub category select
+                        $("select#product_subcategory_id option").remove();
+                        $.each(data, function(i, subcategory){
+                             row = "<option value=\"" + subcategory.id + "\">" + subcategory.name + "</option>";  
+                            $(row).appendTo("select#product_subcategory_id");                    
+                        });            
+                     }
+                });
+            };
+                });
+    });
+</script>
+
+
+<script type="text/javascript">
+//script para poner la categoria correcta cuando se trae la subcategoria de un producto y traer las subcategorias de  la categoria del producto
+    $(document).ready(function(){
+     
+                var id_value_string= $("select#product_subcategory_id").val();
+               // Send the request and update sub category dropdown
+                $.ajax({
+                    dataType: "json",
+                    cache: false,
+                    url: '/subcategories/get_category_by_subcategory/'+id_value_string+'.json' ,
+                    data:  id_value_string,
+                    timeout: 2000,
+                    error: function(XMLHttpRequest, errorTextStatus, error){
+                        alert("Failed to submit : "+ errorTextStatus+" ;"+error);
+                    },
+                    success: function(data){                    
+                             $("#category_category_id").val(data["id"]);                 
+                     }
+                });         
+    });
+</script>
+  <div id="form">
+  <%= nested_form_for [refinery, :products_admin, @product] do |f| -%>
+
+    <% if @product.errors.any? %>  
+      <div id="errorExplanation">  
+        <h2>
+          <%= pluralize(@product.errors.count, "error") %> prohibited this user from being saved:
+        </h2>  
+        <ul>  
+          <% @product.errors.full_messages.each do |msg| %>  
+            <li>
+              <%= msg %>
+            </li>  
+          <% end %>  
+        </ul>  
+      </div> 
+      <%= render '/refinery/admin/error_messages',  :object => @product,  :include_object_name => true %>
+    <% end %>
+
+    <h3>  Imagenes representativas</h3>
+    <%= f.fields_for :productimages do |task| %>
+      <% if task.object.image.url != "/images/original/missing.png" %>
+        <%= image_tag task.object.image.url%>
+      <% end %>
+      </br>
+      <%= task.file_field :image %>
+      <%= task.link_to_remove "-" %>
+      </br>
+    <% end %>
+    <p>
+      <%= f.link_to_add "+", :productimages %>
+    </p>
+
+
+
+       
+
+    
+    <div class='field'>
+      <%= f.label :code -%>
+      <%= f.text_field :code -%>
+    </div>
+    <div class='field'>
+      <%= f.label :stock -%>
+      <%= f.text_field :stock -%>
+    </div>
+    <div class='field'>
+      <%= f.label :name -%>
+      <%= f.text_field :name -%>
+    </div>
+
+    <div class='field'>
+      <%= f.label :description -%>
+      <%= f.text_field :description -%>
+    </div>
+
+    <div class='field'>
+      <%= f.label :price -%>
+      <%= f.text_field :price -%>
+    </div>
+
+    <div class='field'>
+      <%= f.label :author -%>
+      <%= f.text_field :author -%>
+    </div>
+      
+    <div class='field'>
+      <%= f.label :exchange -%>
+      <%= f.number_field :exchange -%>
+    </div>
+    
+    <div class='field'>
+      <%= f.label :bonus -%>
+      <%= f.number_field :bonus -%>
+    </div>
+    
+    <div>   
+      <%= f.label :category %><br />
+      <%= collection_select(:category, :category_id, @editcategories,:id, :name)-%>
+    </div>
+    
+    <div>
+      <label>Subcategorias  </label>
+      <%= f.collection_select :subcategory_id, @editsubcategories, :id, :name  %>
+    </div>
+
+        <%=f.check_box(:delete_attach) %><!--no se muestra en la vista, se usa por debajo para borrar el archivo de descarga asociado-->
+
+
+
+         
+    <div id="actualfile">
+
+      <% if f.object.attach_file_name.nil? %>
+      <!--si tiene un archivo de descarga asociado-->
+        <!--si no tiene un archivo de descarga asociado-->
+        <a id="add_file_link" onclick="add_first_file();" >Agregar Archivo</a> <br>
+
+     
+
+        
+        <% else %>
+      
+         <h3>Archivo a descargar:</h3>
+        <%=  @product.attach_file_name %></br>
+         <%= f.file_field :attach %></br>
+        <a id="delete_file_link" onclick="delete_file();">Eliminar</a> </br>
+        <a id="change_file_link"onclick="change_file();" >Cambiar</a> </br>
+      
+         
+     
+     
+        <%end%>
+    </div>
+
+  <%= render '/refinery/admin/form_actions', 
+              :f => f,
+              :continue_editing => false,
+              :delete_title => t('delete', :scope => 'refinery.products.admin.products.product'),
+              :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @product.name) -%>
+<% end -%>
+
+
+
+
+
+
+
+
+    

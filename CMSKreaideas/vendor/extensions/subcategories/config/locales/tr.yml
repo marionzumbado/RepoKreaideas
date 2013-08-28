@@ -1,0 +1,28 @@
+tr:
+  refinery:
+    plugins:
+      subcategories:
+        title: Subcategories
+    subcategories:
+      admin:
+        subcategories:
+          actions:
+            create_new: Yeni Ekle Subcategory
+            reorder: Tekrar sirala Subcategories
+            reorder_done: Tekrar siralama tamamlandiSubcategories
+          records:
+            title: Subcategories
+            sorry_no_results: Uzgunum! Herhangi bir sonuc bulunamadi.
+            no_items_yet: Herhangi bir Subcategories yok henuz.  Tikla "Yeni Ekle Subcategory" eklemek senin ilk subcategory.
+          subcategory:
+            view_live_html: Bunu canlu subcategory goruntule <br/><em>(yeni bir pencerede acar)</em>
+            edit: Bunu Duzenle subcategory
+            delete: Bunu Sil subcategory sonsuza dek
+      subcategories:
+        show:
+          other: Diger Subcategories
+  activerecord:
+    attributes:
+      'refinery/subcategories/subcategory':
+        name: Name
+        category_id: Category

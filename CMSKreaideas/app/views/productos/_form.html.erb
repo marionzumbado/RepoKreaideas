@@ -1,0 +1,12 @@
+<%= form_for(@product) do |f| %>
+
+
+    <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+   
+
+<% end %>
+<%= button_to t('.add_html' ) %>
+

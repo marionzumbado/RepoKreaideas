@@ -1,0 +1,32 @@
+zh-CN:
+  refinery:
+    plugins:
+      bulletins:
+        title: Bulletins
+    bulletins:
+      admin:
+        bulletins:
+          actions:
+            create_new: 建立新的 Bulletin
+            reorder: 对 Bulletins 重新排序
+            reorder_done: 对 Bulletins 的重新排序结束
+          records:
+            title: Bulletins
+            sorry_no_results: 对不起，未找到结果。 #Sorry! There are no results found.
+
+            # There are no Bulletins yet. Click "Add New Bulletin" to add your first bulletin.
+            no_items_yet: 目前没有 Bulletins . 点击 "Add New Bulletin" 创建一个bulletin.
+          bulletin:
+            view_live_html: 查看 bulletin 的最新内容.<br/><em>(新窗口中打开)</em>
+            edit: 编辑 bulletin
+            delete: 永久删除 bulletin
+      bulletins:
+        show:
+          other: 其他 Bulletins
+  activerecord:
+    attributes:
+      'refinery/bulletins/bulletin':
+        title: Title
+        description: Description
+        publicationday: Publicationday
+        user_id: User

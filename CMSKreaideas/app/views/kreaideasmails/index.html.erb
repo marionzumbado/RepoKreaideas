@@ -1,0 +1,27 @@
+<h1>Correos de Kreaideas</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Correo</th>
+    <th>Mensaje</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @kreaideasmails.each do |kreaideasmail| %>
+  <tr>
+    <td><%= kreaideasmail.name %></td>
+    <td><%= kreaideasmail.email %></td>
+    <td><%= kreaideasmail.message %></td>
+    <td><%= link_to 'Show', kreaideasmail %></td>
+    <td><%= link_to 'Edit', edit_kreaideasmail_path(kreaideasmail) %></td>
+    <td><%= link_to 'Destroy', kreaideasmail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Kreaideasmail', new_kreaideasmail_path %>

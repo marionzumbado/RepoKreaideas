@@ -1,0 +1,132 @@
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag :defaults, "nested_form" %>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+         Numerous.init();
+        $("select#category_category_id").change(function(){
+            var id_value_string = $(this).val();
+            if (id_value_string == "") {
+                // if the id is empty remove all the sub_selection options from being selectable and do not do any ajax
+                $("select#product_subcategory_id").remove();
+                var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                $(row).appendTo("product_subcategory_id");
+            }
+            else {
+                // Send the request and update sub category dropdown
+                $.ajax({
+                    dataType: "json",
+                    cache: false,
+                    url: '/subcategories/search_by_category/'+id_value_string+'.json' ,
+                    data:  id_value_string,
+                    timeout: 2000,
+                    error: function(XMLHttpRequest, errorTextStatus, error){
+                        alert("Failed to submit : "+ errorTextStatus+" ;"+error);
+                    },
+                    success: function(data){                    
+                        // Clear all options from sub category select
+                        $("select#product_subcategory_id option").remove();
+                        //put in a empty default line
+                        //var row = "<option value=\"" + "holA" + "\">" + "" + "</option>";
+                        //$(row).appendTo("select#subcategory_subcategory_id");                        
+                        // Fill sub category select
+                        $.each(data, function(i, subcategory){
+                             row = "<option value=\"" + subcategory.id + "\">" + subcategory.name + "</option>";  
+                            $(row).appendTo("select#product_subcategory_id");                    
+                        });            
+                     }
+                });
+            };
+                });
+    });
+</script>
+
+
+<%= nested_form_for [refinery, :products_admin, @product], html: { multipart: true } do |f| -%>
+  <%= render '/refinery/admin/error_messages',  :object => @product,  :include_object_name => true %>
+
+  <h3>  Imagenes representativas</h3>
+  <%= f.fields_for :productimages do |task| %>
+    <%= task.file_field :image %>
+    <%= task.link_to_remove "-" %>
+  <% end %>
+  <p>
+    <%= f.link_to_add "+", :productimages %>
+  </p>
+  
+  <div class='field'>  
+    <p>
+      <label>
+        Archivo a descargar
+      <label/>
+      <%= f.file_field :attach%>
+    </p>
+  </div>
+
+  <div class='field'>
+    <%= f.label :code -%>
+    <%= f.text_field :code -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :stock -%>
+    <%= f.text_field :stock -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :description -%>
+    <%= f.text_field :description -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :price -%>
+    <%= f.text_field :price -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :author -%>
+    <%= f.text_field :author -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :exchange -%>
+    <%= f.number_field :exchange -%>
+  </div>
+  <div class='field'>
+    <%= f.label :bonus -%>
+    <%= f.number_field :bonus -%>
+  </div>
+
+  <div class='field'>   
+    <label>Categorias  </label>
+    <%= collection_select(:category, :category_id,@categories,:id, :name)-%>
+  </div>
+
+  <div class='field'>
+    <label>Subcategorias  </label>
+    <%= f.collection_select :subcategory_id, @subcategories, :id, :name %>
+  </div>
+
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.products.admin.products.product'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @product.name) -%>
+<% end -%>
+
+
+
+
+
+
+
+
+
+
+
+
+    

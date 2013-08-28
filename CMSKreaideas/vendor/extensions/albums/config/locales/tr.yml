@@ -1,0 +1,29 @@
+tr:
+  refinery:
+    plugins:
+      albums:
+        title: Albums
+    albums:
+      admin:
+        albums:
+          actions:
+            create_new: Yeni Ekle Album
+            reorder: Tekrar sirala Albums
+            reorder_done: Tekrar siralama tamamlandiAlbums
+          records:
+            title: Albums
+            sorry_no_results: Uzgunum! Herhangi bir sonuc bulunamadi.
+            no_items_yet: Herhangi bir Albums yok henuz.  Tikla "Yeni Ekle Album" eklemek senin ilk album.
+          album:
+            view_live_html: Bunu canlu album goruntule <br/><em>(yeni bir pencerede acar)</em>
+            edit: Bunu Duzenle album
+            delete: Bunu Sil album sonsuza dek
+      albums:
+        show:
+          other: Diger Albums
+  activerecord:
+    attributes:
+      'refinery/albums/album':
+        name: Name
+        description: Description
+        imagen_id: Imagen
