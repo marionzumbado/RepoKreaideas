@@ -48,7 +48,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html { redirect_to @cart, notice: 'El carrito se a creado con éxito.' }
         format.json { render json: @cart, status: :created, location: @cart }
       else
         format.html { render action: "new" }
@@ -61,10 +61,11 @@ class CartsController < ApplicationController
   # PATCH/PUT /carts/1.json
   def update
     @cart = Cart.find(params[:id])
-
+ 
+    #@cart=current_cart
     respond_to do |format|
       if @cart.update_attributes(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
+        format.html { redirect_to @cart, notice: 'El carrito se a actualizado con éxito.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -98,6 +99,6 @@ class CartsController < ApplicationController
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def cart_params
-      params.require(:cart).permit()
+      params.require(:cart).permit( line_items_attributes: [:id, :quantity])
     end
 end
