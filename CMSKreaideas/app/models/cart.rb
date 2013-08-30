@@ -3,6 +3,7 @@ class Cart < ActiveRecord::Base
 	has_many :line_items, :dependent => :destroy
 	accepts_nested_attributes_for :line_items
 	attr_accessible :line_items_attributes
+	after_save :delete_quantity_zero
 
 
 	 HUMANIZED_ATTRIBUTES = {
@@ -28,4 +29,9 @@ class Cart < ActiveRecord::Base
   	def total_price
 		line_items.to_a.sum { |item| item.total_price }
 	end
+
+	def delete_quantity_zero
+		LineItem.delete line_items.quantity_zero
+	end
+
 end

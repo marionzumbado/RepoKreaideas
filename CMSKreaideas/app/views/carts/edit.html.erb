@@ -1,4 +1,4 @@
-<h1>Editing cart</h1>
+<h1>Editar carrito</h1>
 
 Desgloce detallado para editar
 <%=  nested_form_for(@cart) do |f| %>
@@ -7,11 +7,13 @@ Desgloce detallado para editar
    	<%= f.fields_for :line_items do |task| %>
   		<%=f.label :quantity%>
     	<%= task.text_field :quantity %>
+
 	   	<%= task.fields_for :product do |task2| %>
 	  		<%=task2.label :name%>
 	    	<%= task2.text_field :name %><br>
 	    	<%=task2.label :price%>
 	    	<%= task2.text_field :price , :value => number_to_currency(task2.object.price, :precision => 2) %></br>
+
 	    	--------------------
 		<% end %>
 	<% end %>
@@ -20,5 +22,5 @@ Desgloce detallado para editar
 <% end %>
 
 
-<%= link_to 'Show', @cart %> |
-<%= link_to 'Back', carts_path %>
+<%= link_to 'Mostrar', @cart %> |
+<%= link_to 'Atrás', carts_path %>

@@ -35,6 +35,7 @@ class LineItemsController < ApplicationController
   # GET /line_items/1/edit
   def edit
     @line_item = LineItem.find(params[:id])
+
   end
 
   # POST /line_items
@@ -60,17 +61,25 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1.json
   def update
     @line_item = LineItem.find(params[:id])
-
-    respond_to do |format|
+   respond_to do |format|
       if @line_item.update_attributes(line_item_params)
-        format.html { redirect_to @line_item, notice: 'La linea de producto a sido actualizada con éxito.' }
+        
+        if @line_item.quantity== 0
+          format.html { redirect_to store_index_url, notice: 'La linea de producto ha sido eliminada.' }
+          @line_item.destroy 
+        else
+        format.html { redirect_to store_index_url, notice: 'La linea de producto ha sido actualizada con éxito.' }
+
         format.json { head :no_content }
+         end
       else
         format.html { render action: "edit" }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
+
       end
     end
   end
+
 
   # DELETE /line_items/1
   # DELETE /line_items/1.json
@@ -79,7 +88,7 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to line_items_url }
+      format.html { redirect_to store_index_url }
       format.json { head :no_content }
     end
   end
@@ -90,6 +99,6 @@ class LineItemsController < ApplicationController
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def line_item_params
-      params.require(:line_item).permit(:cart_id, :product_id)
+      params.require(:line_item).permit(:cart_id, :product_id,:quantity)
     end
 end

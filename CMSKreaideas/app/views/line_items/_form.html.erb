@@ -19,6 +19,12 @@
     <%= f.label :cart_id %><br />
     <%= f.number_field :cart_id %>
   </div>
+
+  <div class="field">
+    <%= f.label :quantity %><br />
+    <%= f.number_field :quantity %>
+    <%=@line_item.quantity %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

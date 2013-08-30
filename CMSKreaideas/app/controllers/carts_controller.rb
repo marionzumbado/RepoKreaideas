@@ -61,8 +61,8 @@ class CartsController < ApplicationController
   # PATCH/PUT /carts/1.json
   def update
     @cart = Cart.find(params[:id])
- 
     #@cart=current_cart
+    
     respond_to do |format|
       if @cart.update_attributes(cart_params)
         format.html { redirect_to @cart, notice: 'El carrito se a actualizado con éxito.' }
@@ -101,4 +101,5 @@ class CartsController < ApplicationController
     def cart_params
       params.require(:cart).permit( line_items_attributes: [:id, :quantity])
     end
+
 end
