@@ -1,6 +1,7 @@
 module Refinery
   module Products
     class Product < Refinery::Core::BaseModel
+      default_scope :order => 'name'
       has_many :line_items,:class_name => '::LineItem'
       before_destroy :ensure_not_referenced_by_any_line_item
       has_attached_file :attach

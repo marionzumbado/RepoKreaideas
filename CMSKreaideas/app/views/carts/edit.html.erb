@@ -1,26 +1,30 @@
 <h1>Editar carrito</h1>
+Desgloce detallado para editar 
+<%= nested_form_for(@cart) do |f| %>
+	<table border="1">
+		<tr>
+			
+	    	<th>Producto</th>
+	        <th>Precio</th>
+	        <th>Cantidad</th>
+	        <th>Total de la linea</th>
+	    </tr>
+		<h3>  Lineas de venta</h3>
+	   	<%= f.fields_for :line_items do |task| %>
+	  		<tr>
+	  			
+		   		<%= task.fields_for :product do |task2| %>
 
-Desgloce detallado para editar
-<%=  nested_form_for(@cart) do |f| %>
-
-  	<h3>  Lineas de venta</h3>
-   	<%= f.fields_for :line_items do |task| %>
-  		<%=f.label :quantity%>
-    	<%= task.text_field :quantity %>
-
-	   	<%= task.fields_for :product do |task2| %>
-	  		<%=task2.label :name%>
-	    	<%= task2.text_field :name %><br>
-	    	<%=task2.label :price%>
-	    	<%= task2.text_field :price , :value => number_to_currency(task2.object.price, :precision => 2) %></br>
-
-	    	--------------------
+		  			<td ><%=task2.label :name, value= "#{task2.object.name}"%></td >
+		    		<td ><%=task2.label :price, value= number_to_currency(task2.object.price, :precision => 2)%></td >
+					<td ><%= task.text_field :quantity %></td >
+					<td><%=task.label :name, value= "#{task.object.total_price}"%></td>
+				<% end %>
+			</tr>
 		<% end %>
-	<% end %>
-	 Total: <%= number_to_currency(@cart.total_price) %></br>
-	 <%= f.submit "Guardar cambios"%>
+	</table>
+	Total: <%= number_to_currency(@cart.total_price) %>
+	<%= f.submit "Guardar cambios"%>
 <% end %>
-
-
 <%= link_to 'Mostrar', @cart %> |
 <%= link_to 'Atrás', carts_path %>
