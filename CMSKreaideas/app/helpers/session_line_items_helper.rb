@@ -1,0 +1,2 @@
+module SessionLineItemsHelper
+end

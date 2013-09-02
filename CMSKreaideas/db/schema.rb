@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827203820) do
+ActiveRecord::Schema.define(:version => 20130902221136) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -266,5 +266,18 @@ ActiveRecord::Schema.define(:version => 20130827203820) do
 
   add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
   add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "id_type_index_on_seo_meta"
+
+  create_table "session_carts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "session_line_items", :force => true do |t|
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "quantity",        :default => 1
+    t.integer  "session_cart_id"
+    t.integer  "product_id"
+  end
 
 end

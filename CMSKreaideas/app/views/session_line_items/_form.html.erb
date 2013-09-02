@@ -1,0 +1,17 @@
+<%= form_for(@session_line_item) do |f| %>
+  <% if @session_line_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session_line_item.errors.count, "error") %> prohibited this session_line_item from being saved:</h2>
+
+      <ul>
+      <% @session_line_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

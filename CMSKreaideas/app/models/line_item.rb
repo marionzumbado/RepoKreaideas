@@ -1,5 +1,5 @@
 class LineItem < ActiveRecord::Base
-    attr_accessible :cart_id, :product_id,:product,:quantity
+  attr_accessible :cart_id, :product_id,:product,:quantity
   belongs_to :product ,:class_name => '::Refinery::Products::Product', :inverse_of => :line_items
   belongs_to :cart
   accepts_nested_attributes_for :product
@@ -9,7 +9,7 @@ class LineItem < ActiveRecord::Base
 
   def total_price
   		product.price*quantity
-  	end
+  end
 
 
 end

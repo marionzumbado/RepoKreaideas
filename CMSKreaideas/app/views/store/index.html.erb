@@ -1,4 +1,6 @@
-
+Id de carrito de sesion: <%=session[:session_cart] %></br>
+Id de carito en BD: <%=session[:cart].id %></br>
+Usuario Actual: <%=current_member.email %>
 <div id="user_nav">
 	<% if member_signed_in?%>
 	Inicio sesión como <%= current_member.email %> No es usted?
@@ -33,8 +35,9 @@
 <div><span class="bonus" >Bono: <%= product.bonus %></span></div>
 <div><span class="stock" >Stock: <%= product.stock %></span></div>
 <div><span class="subcategory" >Subcategoria: <%= product.subcategory.name %></span></div>
-<div><span class="category" >Categoria: <%= product.subcategory.category.name %></span></div>
-<%= button_to 'Añadir al carrito' , line_items_path(:product_id => product) %>
+<!--<div><span class="category" >Categoria: <%= product.subcategory.category.name %></span></div>
+<%= button_to 'Añadir al carrito' , session_line_items_path(:product_id => product.id) %>-->
+  <%= button_to 'Añadir al carrito' , line_items_path(:product_id => product.id) %> 
 
 </br></br>
 

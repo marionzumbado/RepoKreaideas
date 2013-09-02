@@ -1,6 +1,7 @@
 <tr>
-<td id="line_item_quantity"><%= line_item.quantity %>&times;</td>
+<td id="line_item_quantity"><%= line_item.quantity %></td>
 <td ><%= line_item.product.name %></td>
+<td ><%= line_item.product.price %></td>
 <td id="line_item_total" class="item_price" ><%= number_to_currency(line_item.total_price) %></td>
-<td ><%= button_to 'Eliminar linea' , line_item, :method => :delete,:confirm => 'Esta seguro?' %></td>
+<td ><%= button_to 'X' , line_item, :method => :delete,:confirm => 'Esta seguro?' %></td>
 </tr>

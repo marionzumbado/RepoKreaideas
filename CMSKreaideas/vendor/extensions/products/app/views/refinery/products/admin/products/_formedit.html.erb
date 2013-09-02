@@ -6,31 +6,36 @@
     //funcion para borrarle un archivo de descarga a un producto
     document.getElementById("product_delete_attach").checked=true;
     var form= document.getElementById("actualfile");
-    document.getElementById("delete_file_link").style.visibility="hidden";
-    document.getElementById("change_file_link").style.visibility="hidden";
-    document.getElementById("product_attach").style.visibility="hidden";
-    var addfile= document.createElement("a");
-    addfile.innerHTML = "Agregar Archivo";
-    addfile.id="addfile";
-    addfile.setAttribute("onclick","add_new_file();");
-    form.appendChild(addfile);
+    var deletefilelink=document.getElementById("delete_file_link");
+    var changefilelink=document.getElementById("change_file_link");
+    form.removeChild(deletefilelink);
+    form.removeChild(changefilelink); 
+    var addfile2= document.createElement("a");
+    addfile2.innerHTML = "Agregar Archivo";
+    addfile2.id="addfile";
+    addfile2.setAttribute("onclick","add_new_file();");
+    form.appendChild(addfile2);
   }
 </script>
 <script type="text/javascript">
   function add_new_file()
   {
     //funcion para agregar un archivo a un producto que ya tenia
+    var form= document.getElementById("actualfile");
     document.getElementById("product_delete_attach").checked=false;
-    var attachfile=document.getElementById("product_attach");
-    attachfile.type="file";
-    attachfile.disabled=false;
-    document.getElementById("product_attach").style.visibility="visible";
-    document.getElementById("addfile").style.visibility="hidden";
+    var productattach= document.createElement("input");
+    productattach.type="file";
+    productattach.id="product_attach";
+    productattach.name="product[attach]";
+    
+    var addfile = document.getElementById("addfile");
+    form.removeChild(addfile);
+    form.appendChild(productattach);
     var cancelbrowseinnew= document.createElement("a");
     cancelbrowseinnew.innerHTML = "Cancelar";
     cancelbrowseinnew.id="cancelbrowseinnew";
     cancelbrowseinnew.setAttribute("onclick","cancel_browse_in_new();");
-    var form= document.getElementById("actualfile");
+    
     form.appendChild(cancelbrowseinnew);
 
   }
@@ -40,6 +45,7 @@
   function add_first_file()
   {
     //agregar un archivo a un producto que no tenia
+    var form= document.getElementById("actualfile");
     document.getElementById("product_delete_attach").checked=false;
     var attachfile= document.createElement("input");
     attachfile.id="product_attach"
@@ -50,12 +56,12 @@
 
 
 
-    document.getElementById("add_file_link").style.visibility="hidden";
+    var addfilelink=document.getElementById("add_file_link");
     var cancelbrowseinfirst= document.createElement("a");
     cancelbrowseinfirst.innerHTML = "Cancelar";
     cancelbrowseinfirst.id="cancelbrowseinfirst";
     cancelbrowseinfirst.setAttribute("onclick","cancel_browse_in_first();");
-    var form= document.getElementById("actualfile");
+    form.removeChild(addfilelink);
     form.appendChild(attachfile);
     form.appendChild(cancelbrowseinfirst);
 
@@ -65,15 +71,22 @@
   function cancel_browse_in_edit()
   {
     //alert("hola ya casito cancelam,os un archivo");
-    var attachfile=document.getElementById("product_attach");
-    attachfile.type="text";
-    attachfile.disabled=true;
-    document.getElementById("delete_file_link").style.visibility="visible";
-    document.getElementById("change_file_link").style.visibility="visible";
-    
-    var cancelbrowse=document.getElementById("cancelbrowse");
     var form= document.getElementById("actualfile");
+    var attachfile=document.getElementById("product_attach");
+    form.removeChild(attachfile);
+    attachfile.disabled=true;
+    var deletefilelink= document.createElement("a");
+    deletefilelink.innerHTML = "Eliminar";
+    deletefilelink.id="delete_file_link";
+    deletefilelink.setAttribute("onclick","delete_file();");
+    var changefilelink= document.createElement("a");
+    changefilelink.innerHTML = "Cambiar";
+    changefilelink.id="change_file_link";
+    changefilelink.setAttribute("onclick","change_file();");
+    var cancelbrowse=document.getElementById("cancelbrowse");
     form.removeChild(cancelbrowse);
+    form.appendChild(deletefilelink);
+    form.appendChild(changefilelink);
 
   }
 </script>
@@ -87,10 +100,13 @@
     var cancelbrowseinfirst=document.getElementById("cancelbrowseinfirst");
     var form= document.getElementById("actualfile");
     form.removeChild(cancelbrowseinfirst);
-    document.getElementById("product_attach").style.visibility="hidden";
-    document.getElementById("add_file_link").style.visibility="visible";
-    var attachfile=  document.getElementById("product_attach");
-    form.removeChild(attachfile);
+    var productattach=document.getElementById("product_attach");
+    form.removeChild(productattach);
+    var addfile2= document.createElement("a");
+    addfile2.innerHTML = "Agregar Archivo";
+    addfile2.id="add_file_link";
+    addfile2.setAttribute("onclick","add_first_file();");
+    form.appendChild(addfile2);
 
   }
 </script>
@@ -105,8 +121,13 @@
     var cancelbrowseinnew=document.getElementById("cancelbrowseinnew");
     var form= document.getElementById("actualfile");
     form.removeChild(cancelbrowseinnew);
-    document.getElementById("product_attach").style.visibility="hidden";
-    document.getElementById("addfile").style.visibility="visible";
+    var productattach=document.getElementById("product_attach");//.style.visibility="hidden";
+    form.removeChild(productattach);
+    var addfile2= document.createElement("a");
+    addfile2.innerHTML = "Agregar Archivo";
+    addfile2.id="addfile";
+    addfile2.setAttribute("onclick","add_new_file();");
+    form.appendChild(addfile2);
 
   }
 </script>
@@ -119,13 +140,25 @@
   function change_file()
   {
     //alert("hola ya casito cambiamos un archivo");
-    document.getElementById("product_attach").style.visibility="visible";
-    var attachfile=document.getElementById("product_attach");
+
+    //document.getElementById("product_attach").style.visibility="visible";
+    //var attachfile=document.getElementById("product_attach");
+    //attachfile.type="file";
+
+    //attachfile.disabled=false;
+     var form= document.getElementById("actualfile");
+    var attachfile= document.createElement("input");
+    attachfile.id="product_attach"
     attachfile.type="file";
-    attachfile.disabled=false;
-    document.getElementById("delete_file_link").style.visibility="hidden";
-    document.getElementById("change_file_link").style.visibility="hidden";
-    var form= document.getElementById("actualfile");
+    attachfile.name="product[attach]";
+    //document.getElementById("delete_file_link").style.visibility="hidden";
+    //document.getElementById("change_file_link").style.visibility="hidden";
+    var deletefilelink=document.getElementById("delete_file_link");//.style.visibility="hidden";
+    var changefilelink=document.getElementById("change_file_link");//.style.visibility="hidden";
+    //var productattach=document.getElementById("product_attach");//.style.visibility="hidden";
+    form.removeChild(deletefilelink);
+    form.removeChild(changefilelink);
+    form.appendChild(attachfile);
     var cancelbrowse= document.createElement("a");
     cancelbrowse.innerHTML = "Cancelar";
     cancelbrowse.id="cancelbrowse";
@@ -299,8 +332,8 @@
       
          <h3>Archivo a descargar:</h3>
         <%=  @product.attach_file_name %></br>
-         <%= f.file_field :attach %></br>
-        <a id="delete_file_link" onclick="delete_file();">Eliminar</a> </br>
+        
+        <a id="delete_file_link" onclick="delete_file();">Eliminar</a> 
         <a id="change_file_link"onclick="change_file();" >Cambiar</a> </br>
       
          

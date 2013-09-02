@@ -1,10 +1,20 @@
+
+
+
 <div class="cart_title" >Su carrito de compras!!</div>
 <td>Id del carrito<%= cart.id%></td>
-<table>
+<table border="1">
+<td>Cantidad</td>
+<td >Producto</td>
+<td >Precio Individual</td>
+<td >Total de la linea</td>
+<td >Eliminar linea</td>
 <%= render(cart.line_items) %>
-<tr class="total_line" >
-<td colspan="2" >Total</td>
-<td id="cart_total" class="total_cell" ><%= number_to_currency(cart.total_price) %></td>
-</tr>
+<tr class="total_line" ></tr>
 </table>
-<%= button_to 'Vaciar carrito' , cart, :method => :delete,:confirm => 'Esta seguro?' %>
+<div>Total
+<%= number_to_currency(cart.total_price) %></div>
+
+
+
+<%= button_to 'Vaciar carrito' , cart, :method => :destroy,:confirm => 'Esta seguro?' %>

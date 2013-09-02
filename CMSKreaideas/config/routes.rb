@@ -5,6 +5,12 @@ CMSKreaideas::Application.routes.draw do
 
 
   
+  resources :session_line_items
+
+
+  resources :session_carts
+
+
   resources :line_items
 
 
