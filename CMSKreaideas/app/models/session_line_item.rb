@@ -6,6 +6,7 @@ class SessionLineItem < ActiveRecord::Base
   accepts_nested_attributes_for :product
   scope :quantity_zero, lambda{ where(quantity:0) }
   default_scope :order => 'id'
+  
 
 
   def total_price

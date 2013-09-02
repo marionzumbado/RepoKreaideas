@@ -45,7 +45,8 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
-
+    @cart.member_id=current_member.id
+    puts "aquiii"
     respond_to do |format|
       if @cart.save
         format.html { redirect_to @cart, notice: 'El carrito se a creado con éxito.' }

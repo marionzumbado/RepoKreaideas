@@ -7,6 +7,7 @@ class Cart < ActiveRecord::Base
 	after_save :delete_quantity_zero
 
 
+
 	 HUMANIZED_ATTRIBUTES = {
     :quantity => "Cantidad"
  	 }
@@ -35,5 +36,6 @@ class Cart < ActiveRecord::Base
 	def delete_quantity_zero
 		LineItem.delete line_items.quantity_zero
 	end
+
 
 end

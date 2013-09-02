@@ -20,8 +20,15 @@ class ApplicationController < ActionController::Base
 		Cart.find(session[:cart])
 		rescue ActiveRecord::RecordNotFound
 			cart = Cart.create
+			cart.member_id=current_member.id
+			puts"))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))#{cart.member_id}"
+			cart.save
+
+
+			#cart = Cart.new(cart_params)
+    		#cart.member_id=current_member.id
+    		#cart.save
 			session[:cart] = cart.id
-			puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA#{cart.id}"
 			cart
 	end
 
@@ -30,7 +37,6 @@ class ApplicationController < ActionController::Base
 		rescue ActiveRecord::RecordNotFound
 			cart = SessionCart.create
 			session[:session_cart] = cart.id
-			puts "BBBBBBBBBBBBBBBBBBBBBBBBBBA#{cart.id}"
 			cart
 	end
 

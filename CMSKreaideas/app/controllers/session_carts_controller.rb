@@ -46,7 +46,7 @@ class SessionCartsController < ApplicationController
   # POST /session_carts.json
   def create
     @session_cart = SessionCart.new(session_cart_params)
-
+    puts "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
     respond_to do |format|
       if @session_cart.save
         format.html { redirect_to @session_cart, notice: 'Session cart was successfully created.' }

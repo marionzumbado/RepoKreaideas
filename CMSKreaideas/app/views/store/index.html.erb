@@ -1,6 +1,13 @@
-Id de carrito de sesion: <%=session[:session_cart] %></br>
-Id de carito en BD: <%=session[:cart].id %></br>
-Usuario Actual: <%=current_member.email %>
+<%unless current_member.nil?%>
+	Id de carito en BD: <%=session[:cart]%></br>
+	Usuario: <%=current_member.id%></br>
+<%else%>
+	Id de carrito de sesion: <%=session[:session_cart] %></br>
+<%end%>
+
+
+
+
 <div id="user_nav">
 	<% if member_signed_in?%>
 	Inicio sesión como <%= current_member.email %> No es usted?
@@ -17,8 +24,11 @@ Usuario Actual: <%=current_member.email %>
 
 </div>
 </br></br></br></br>
-
-<%= render @cart %>
+<%unless current_member.nil?%>
+	<%= render @cart %>
+<%else%>
+	<%= render @session_cart %>
+<%end%>
 
 <h1>Productos Originales</h1>
 <p id="notice"><%= notice %></p>
@@ -35,9 +45,17 @@ Usuario Actual: <%=current_member.email %>
 <div><span class="bonus" >Bono: <%= product.bonus %></span></div>
 <div><span class="stock" >Stock: <%= product.stock %></span></div>
 <div><span class="subcategory" >Subcategoria: <%= product.subcategory.name %></span></div>
-<!--<div><span class="category" >Categoria: <%= product.subcategory.category.name %></span></div>
-<%= button_to 'Añadir al carrito' , session_line_items_path(:product_id => product.id) %>-->
-  <%= button_to 'Añadir al carrito' , line_items_path(:product_id => product.id) %> 
+<div><span class="category" >Categoria: <%= product.subcategory.category.name %></span></div>
+<%unless current_member.nil?%>
+	BD
+	<%= button_to 'Añadir al carrito' , line_items_path(:product_id => product.id) %>
+<%else%>
+	SESSION
+	<%= button_to 'Añadir al carrito' , session_line_items_path(:product_id => product.id) %> 
+<%end%>
+
+
+  
 
 </br></br>
 

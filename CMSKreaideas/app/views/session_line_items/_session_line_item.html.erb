@@ -1,0 +1,7 @@
+<tr>
+<td id="line_item_quantity"><%= session_line_item.quantity %></td>
+<td ><%= session_line_item.product.name %></td>
+<td ><%= session_line_item.product.price %></td>
+<td id="line_item_total" class="item_price" ><%= number_to_currency(session_line_item.total_price) %></td>
+<td ><%= button_to 'X' , session_line_item, :method => :delete,:confirm => 'Esta seguro?' %></td>
+</tr>
