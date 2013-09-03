@@ -17,11 +17,14 @@ class ApplicationController < ActionController::Base
  private
 
  	def current_cart
-		Cart.find(session[:cart])
+		#Cart.find(session[:cart])
+		#cart=Cart.create
+		@cartid=current_member.cart
+		Cart.find(@cartid)
 		rescue ActiveRecord::RecordNotFound
 			cart = Cart.create
 			cart.member_id=current_member.id
-			puts"))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))#{cart.member_id}"
+			cart.member=current_member
 			cart.save
 
 

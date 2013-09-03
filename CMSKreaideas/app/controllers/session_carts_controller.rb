@@ -40,6 +40,7 @@ class SessionCartsController < ApplicationController
   # GET /session_carts/1/edit
   def edit
     @session_cart = SessionCart.find(params[:id])
+    puts"$$$$$$$$$$$$$$$$$$$$$$$$$440#{@session_cart.id}"
   end
 
   # POST /session_carts
@@ -81,7 +82,7 @@ class SessionCartsController < ApplicationController
     @session_cart.destroy
     session[:session_cart_id]=nil
     respond_to do |format|
-      format.html { redirect_to (store_index_url,:notice => "Su carrito ha sido eliminado") }
+      format.html { redirect_to store_index_url,:notice => "Su carrito ha sido eliminado" }
       format.json { head :no_content }
     end
   end

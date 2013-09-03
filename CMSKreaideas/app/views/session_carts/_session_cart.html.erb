@@ -15,6 +15,8 @@
 <div>Total
 <%= number_to_currency(session_cart.total_price) %></div>
 
+<td><%= link_to 'Editar', edit_session_cart_path(session_cart) %></td>
 
 
-<%= button_to 'Vaciar carrito' ,session_cart, :method => :destroy,:confirm => 'Esta seguro?' %>
+
+<%= button_to 'Vaciar carrito' ,session_cart, :method => :delete,:confirm => 'Esta seguro?' %>

@@ -1,6 +1,7 @@
 <%unless current_member.nil?%>
 	Id de carito en BD: <%=session[:cart]%></br>
 	Usuario: <%=current_member.id%></br>
+	Carrito del usuario segun BD: <%=current_member.cart%></br>
 <%else%>
 	Id de carrito de sesion: <%=session[:session_cart] %></br>
 <%end%>
