@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 #  include Refinery::AuthenticatedSystem
-  protect_from_forgery  with: :exception
+   protect_from_forgery  with: :exception
 
 
   #before_filter :authenticate

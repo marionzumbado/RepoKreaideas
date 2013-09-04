@@ -1,23 +1,20 @@
-<%= javascript_include_tag :defaults %>
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 <script type="text/javascript">
-  function is_user()
-  {
-    var user_id = '<%= current_member%>'; 
-    alert(user_id);
-    if (user_id == "")
-    {
-    	alert("Debe iniciar sesión para agregar productos al carrito");
-    	//here is to code to avoid the action
-    	window.history.back(-1);
-
-    }
-    	
-    else
-    	alert("Usted es un usuario");
-
-  }
-</script>
-
+  jQuery(document).ready(
+  	function(){
+  	  jQuery("#add_to_cart").click(
+  	  	function(e){
+  	  		var user_id = '<%= current_member%>'; 
+   			if (user_id == "")
+    		{
+    			alert("Debe iniciar sesión para agregar productos al carrito");
+    			e.preventDefault();
+			 }
+		}
+  	  );
+  	}
+  );
+ </script>
 Id de carito en BD: <%=session[:cart]%>
 <div id="user_nav">
 	<% if member_signed_in?%>
@@ -37,6 +34,11 @@ Id de carito en BD: <%=session[:cart]%>
 </br></br></br></br>
 <%unless current_member.nil?%>
 	<%= render @cart %>
+
+
+<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @cart.paypal_url(products_url) %>
+
+
 <%end%>
 <h1>Productos Originales</h1>
 <p id="notice"><%= notice %></p>
@@ -54,13 +56,10 @@ Id de carito en BD: <%=session[:cart]%>
 <div><span class="stock" >Stock: <%= product.stock %></span></div>
 <div><span class="subcategory" >Subcategoria: <%= product.subcategory.name %></span></div>
 <div><span class="category" >Categoria: <%= product.subcategory.category.name %></span></div>
-
-	<%= button_to 'Añadir al carrito' , line_items_path(:product_id => product.id),:onclick=>"javascript:is_user()",:id=>"add_to_cart" %>
-
-
-
-  
+<%= button_to 'Añadir al carrito' , line_items_path(:product_id => product.id),:id=>"add_to_cart" %>
 
 </br></br>
 
 <% end %>
+
+

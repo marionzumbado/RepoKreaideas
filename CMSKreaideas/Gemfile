@@ -57,6 +57,7 @@ gem 'refinerycms-acts-as-indexed', '~> 1.0.0'
 #  gem 'refinerycms-inquiries', '~> 2.1.0'
 #  gem 'refinerycms-search', '~> 2.1.0'
 #  gem 'refinerycms-page-images', '~> 2.1.0'
+gem "activemerchant"
 
 gem 'refinerycms-subcategories', :path => 'vendor/extensions'
 gem 'refinerycms-categories', :path => 'vendor/extensions'

@@ -5,6 +5,11 @@ CMSKreaideas::Application.routes.draw do
 
 
   
+  #resources :orders
+
+
+
+  resources :orders 
   resources :line_items
 
 
@@ -23,7 +28,14 @@ CMSKreaideas::Application.routes.draw do
   resources :products
   resources :store
 
+  #devise_for :members, :skip => [:passwords]
+  #as :member do
+  #get 'sign-in' => 'devise/passwords#new', :as => :new_member_session
+  #post 'sign-in' => 'devise/passwords#create', :as => :new_member_session
+  #delete 'sign-out' => 'devise/passwords#destroy', :as => :destroy_member_session
+#end
 
+  #match '/users/sign_in' => "devise/password#create", :as => :create_user_session
   
   #resources :subcategories do
    # collection do
