@@ -1,173 +1,131 @@
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag :defaults, "nested_form" %>
 <script type="text/javascript">
-  function delete_file()
-  {
-    //funcion para borrarle un archivo de descarga a un producto
-    document.getElementById("product_delete_attach").checked=true;
-    var form= document.getElementById("actualfile");
-    var deletefilelink=document.getElementById("delete_file_link");
-    var changefilelink=document.getElementById("change_file_link");
-    form.removeChild(deletefilelink);
-    form.removeChild(changefilelink); 
-    var addfile2= document.createElement("a");
-    addfile2.innerHTML = "Agregar Archivo";
-    addfile2.id="addfile";
-    addfile2.setAttribute("onclick","add_new_file();");
-    form.appendChild(addfile2);
-  }
-</script>
-<script type="text/javascript">
-  function add_new_file()
-  {
+
+  var KI = KI || {};
+  KI.File = {
+    ui : {
+      deletefilelink : null,
+    },
+    initialize : function(){
+      this.ui.fileform=document.getElementById("actualfile");
+      this.ui.delete_file_link = document.getElementById("delete_file_link");
+      this.ui.product_delete_attach= document.getElementById("product_delete_attach");
+      this.ui.change_file_link= document.getElementById("change_file_link");
+      this.ui.addfile=document.getElementById("addfile");
+      this.ui.add_file_link=document.getElementById("add_file_link");
+      this.ui.product_attach=document.getElementById("product_attach");
+      this.ui.cancelbrowse= document.getElementById("cancelbrowse");
+      this.ui.cancelbrowseinfirst= document.getElementById("cancelbrowseifirst");
+      this.ui.cancelbrowseinnew= document.getElementById("cancelbrowseinnew");
+    }
+    'delete' : function(){
+      //funcion para borrarle un archivo de descarga a un producto
+      this.ui.product_delete_attach.checked=true;
+      this.ui.fileform.removeChild(this.ui.delete_file_link);
+      this.ui.fileform.removeChild(this.ui.change_file_link); 
+
+      var addfile2= document.createElement("a");
+      addfile2.innerHTML = "Agregar Archivo";
+      addfile2.id="addfile";
+      addfile2.setAttribute("onclick","KI.File.new();");
+      this.ui.fileform.appendChild(addfile2);
+
+    },
+    'new' : function(){
     //funcion para agregar un archivo a un producto que ya tenia
-    var form= document.getElementById("actualfile");
-    document.getElementById("product_delete_attach").checked=false;
+    this.ui.product_delete_attach.checked=false;
     var productattach= document.createElement("input");
     productattach.type="file";
     productattach.id="product_attach";
     productattach.name="product[attach]";
-    
-    var addfile = document.getElementById("addfile");
-    form.removeChild(addfile);
-    form.appendChild(productattach);
+    this.ui.fileform.removeChild(this.ui.addfile);
+    this.ui.fileform.appendChild(productattach);
     var cancelbrowseinnew= document.createElement("a");
     cancelbrowseinnew.innerHTML = "Cancelar";
     cancelbrowseinnew.id="cancelbrowseinnew";
-    cancelbrowseinnew.setAttribute("onclick","cancel_browse_in_new();");
-    
-    form.appendChild(cancelbrowseinnew);
-
-  }
-</script>
-<script type="text/javascript">
-
-  function add_first_file()
+    cancelbrowseinnew.setAttribute("onclick","KI.File.cancel_browse_in_new();");    
+    this.ui.fileform.appendChild(cancelbrowseinnew);
+    }
+  add_first : function()
   {
     //agregar un archivo a un producto que no tenia
-    var form= document.getElementById("actualfile");
-    document.getElementById("product_delete_attach").checked=false;
+    this.ui.product_delete_attach.checked=false;
     var attachfile= document.createElement("input");
     attachfile.id="product_attach"
     attachfile.type="file";
     attachfile.name="product[attach]";
-
-
-
-
-
-    var addfilelink=document.getElementById("add_file_link");
     var cancelbrowseinfirst= document.createElement("a");
     cancelbrowseinfirst.innerHTML = "Cancelar";
     cancelbrowseinfirst.id="cancelbrowseinfirst";
-    cancelbrowseinfirst.setAttribute("onclick","cancel_browse_in_first();");
-    form.removeChild(addfilelink);
-    form.appendChild(attachfile);
-    form.appendChild(cancelbrowseinfirst);
-
+    cancelbrowseinfirst.setAttribute("onclick","KI.File.cancel_browse_in_first();");
+    this.ui.fileform.removeChild(this.ui.add_file_link);
+    this.ui.fileform.appendChild(attachfile);
+    this.ui.fileform.appendChild(cancelbrowseinfirst);
   }
-</script>
-<script type="text/javascript">
-  function cancel_browse_in_edit()
+
+   cancel_browse_in_edit : function()
   {
-    //alert("hola ya casito cancelam,os un archivo");
-    var form= document.getElementById("actualfile");
-    var attachfile=document.getElementById("product_attach");
-    form.removeChild(attachfile);
-    attachfile.disabled=true;
+    this.ui.fileform.removeChild(this.ui.product_attach);
     var deletefilelink= document.createElement("a");
     deletefilelink.innerHTML = "Eliminar";
     deletefilelink.id="delete_file_link";
-    deletefilelink.setAttribute("onclick","delete_file();");
+    deletefilelink.setAttribute("onclick","KI.File.delete;");
     var changefilelink= document.createElement("a");
     changefilelink.innerHTML = "Cambiar";
     changefilelink.id="change_file_link";
-    changefilelink.setAttribute("onclick","change_file();");
-    var cancelbrowse=document.getElementById("cancelbrowse");
-    form.removeChild(cancelbrowse);
-    form.appendChild(deletefilelink);
-    form.appendChild(changefilelink);
-
+    changefilelink.setAttribute("onclick","KI.File.change();");   
+    this.ui.fileform.removeChild(this.ui.cancelbrowse);
+    this.ui.fileform.appendChild(deletefilelink);
+    this.ui.fileform.appendChild(changefilelink);
   }
-</script>
-
-<script type="text/javascript">
-  function cancel_browse_in_first()
+ cancel_browse_in_first : function()
   {
-    //alert("hola ya casito cancelam,os un archivo 2");
-
-    document.getElementById("product_delete_attach").checked=true;
-    var cancelbrowseinfirst=document.getElementById("cancelbrowseinfirst");
-    var form= document.getElementById("actualfile");
-    form.removeChild(cancelbrowseinfirst);
-    var productattach=document.getElementById("product_attach");
-    form.removeChild(productattach);
+    this.ui.product_delete_attach.checked=true;
+    this.ui.fileform.removeChild(this.ui.cancelbrowseinfirst);
+    this.ui.fileform.removeChild(this.ui.product_attach);
     var addfile2= document.createElement("a");
     addfile2.innerHTML = "Agregar Archivo";
     addfile2.id="add_file_link";
-    addfile2.setAttribute("onclick","add_first_file();");
-    form.appendChild(addfile2);
-
+    addfile2.setAttribute("onclick","KI.File.add_first();");
+    this.ui.fileform.appendChild(addfile2);
   }
-</script>
 
-
-<script type="text/javascript">
-  function cancel_browse_in_new()
+  cancel_browse_in_new : function ()
   {
-    //alert("hola ya casito cancelam,os un archivo 2");
-
-   document.getElementById("product_delete_attach").checked=true;
-    var cancelbrowseinnew=document.getElementById("cancelbrowseinnew");
-    var form= document.getElementById("actualfile");
-    form.removeChild(cancelbrowseinnew);
-    var productattach=document.getElementById("product_attach");//.style.visibility="hidden";
-    form.removeChild(productattach);
+    this.ui.product_delete_attach.checked=true;
+    this.ui.fileform.removeChild(this.ui.cancelbrowseinnew);
+    this.ui.fileform.removeChild(this.ui.product_attach);
     var addfile2= document.createElement("a");
     addfile2.innerHTML = "Agregar Archivo";
     addfile2.id="addfile";
-    addfile2.setAttribute("onclick","add_new_file();");
+    addfile2.setAttribute("onclick","KI.File.new();");
     form.appendChild(addfile2);
-
   }
-</script>
 
-
-
-
-
-<script type="text/javascript">
-  function change_file()
+  change  : function()
   {
-    //alert("hola ya casito cambiamos un archivo");
-
-    //document.getElementById("product_attach").style.visibility="visible";
-    //var attachfile=document.getElementById("product_attach");
-    //attachfile.type="file";
-
-    //attachfile.disabled=false;
-     var form= document.getElementById("actualfile");
-    var attachfile= document.createElement("input");
+   var attachfile= document.createElement("input");
     attachfile.id="product_attach"
     attachfile.type="file";
     attachfile.name="product[attach]";
-    //document.getElementById("delete_file_link").style.visibility="hidden";
-    //document.getElementById("change_file_link").style.visibility="hidden";
-    var deletefilelink=document.getElementById("delete_file_link");//.style.visibility="hidden";
-    var changefilelink=document.getElementById("change_file_link");//.style.visibility="hidden";
-    //var productattach=document.getElementById("product_attach");//.style.visibility="hidden";
-    form.removeChild(deletefilelink);
-    form.removeChild(changefilelink);
-    form.appendChild(attachfile);
+    this.ui.fileform.removeChild(this.ui.delete_file_link);
+    this.ui.fileform.removeChild(this.ui.change_file_link);
+    this.ui.fileform.appendChild(attachfile);
     var cancelbrowse= document.createElement("a");
     cancelbrowse.innerHTML = "Cancelar";
     cancelbrowse.id="cancelbrowse";
-    cancelbrowse.setAttribute("onclick","cancel_browse_in_edit();");
-    form.appendChild(cancelbrowse);
+    cancelbrowse.setAttribute("onclick","KI.File.cancel_browse_in_edit();");
+    this.ui.fileform.appendChild(cancelbrowse);
   }
-</script>
+  };
 
-<script type="text/javascript">
+
+
+ 
+
+
+
 //script para traer las categorias y las subcategorias de la primera cateogoria
     $(document).ready(function(){
         //document.getElementById("product_delete_attach").style.visibility="hidden";
@@ -202,13 +160,8 @@
                 });
             };
                 });
-    });
-</script>
 
-
-<script type="text/javascript">
-//script para poner la categoria correcta cuando se trae la subcategoria de un producto y traer las subcategorias de  la categoria del producto
-    $(document).ready(function(){
+                $(document).ready(function(){
      
                 var id_value_string= $("select#product_subcategory_id").val();
                // Send the request and update sub category dropdown
@@ -224,9 +177,13 @@
                     success: function(data){                    
                              $("#category_category_id").val(data["id"]);                 
                      }
-                });         
+                });
+
+
+
     });
 </script>
+
   <div id="form">
   <%= nested_form_for [refinery, :products_admin, @product] do |f| -%>
 
@@ -251,20 +208,14 @@
       <% if task.object.image.url != "/images/original/missing.png" %>
         <%= image_tag task.object.image.url%>
       <% end %>
-      </br>
+      <br>
       <%= task.file_field :image %>
       <%= task.link_to_remove "-" %>
       </br>
     <% end %>
     <p>
       <%= f.link_to_add "+", :productimages %>
-    </p>
-
-
-
-       
-
-    
+    </p>  
     <div class='field'>
       <%= f.label :code -%>
       <%= f.text_field :code -%>
@@ -313,32 +264,18 @@
       <%= f.collection_select :subcategory_id, @editsubcategories, :id, :name  %>
     </div>
 
-        <%=f.check_box(:delete_attach) %><!--no se muestra en la vista, se usa por debajo para borrar el archivo de descarga asociado-->
-
-
-
-         
+        <%=f.check_box(:delete_attach) %><!--no se muestra en la vista, se usa por debajo para borrar el archivo de descarga asociado-->      
     <div id="actualfile">
 
       <% if f.object.attach_file_name.nil? %>
       <!--si tiene un archivo de descarga asociado-->
         <!--si no tiene un archivo de descarga asociado-->
-        <a id="add_file_link" onclick="add_first_file();" >Agregar Archivo</a> <br>
-
-     
-
-        
-        <% else %>
-      
-         <h3>Archivo a descargar:</h3>
+        <a id="add_file_link" onclick="add_first_file();" >Agregar Archivo</a> <br>     
+      <% else %>
+        <h3>Archivo a descargar:</h3>
         <%=  @product.attach_file_name %></br>
-        
         <a id="delete_file_link" onclick="delete_file();">Eliminar</a> 
         <a id="change_file_link"onclick="change_file();" >Cambiar</a> </br>
-      
-         
-     
-     
         <%end%>
     </div>
 
@@ -348,12 +285,3 @@
               :delete_title => t('delete', :scope => 'refinery.products.admin.products.product'),
               :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @product.name) -%>
 <% end -%>
-
-
-
-
-
-
-
-
-    
