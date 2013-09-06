@@ -4,5 +4,11 @@ class StoreController < ApplicationController
   	unless current_member.nil?
   		@cart = current_cart
   	end
+
+
+
+
+
   end
+  
 end

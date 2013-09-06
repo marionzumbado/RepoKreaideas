@@ -35,7 +35,7 @@
       var cancelbrowse=document.getElementById("cancelbrowse");
       this.ui.fileform.removeChild(product_attach);
       this.ui.fileform.removeChild(cancelbrowse);
-      if(isedit==1)
+      if(isedit===1)
          KI.File.create_delete_and_chenge_links(); 
        else
       {
@@ -69,7 +69,7 @@
     var cancelbrowse= document.createElement("a");
     cancelbrowse.innerHTML = "Cancelar";
     cancelbrowse.id="cancelbrowse";
-    if (param==1)
+    if (param===1)
       cancelbrowse.setAttribute("onclick","KI.File.cancel_browse(1);");
     else
       cancelbrowse.setAttribute("onclick","KI.File.cancel_browse(0);");

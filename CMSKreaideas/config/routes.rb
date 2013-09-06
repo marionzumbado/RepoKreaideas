@@ -5,6 +5,12 @@ CMSKreaideas::Application.routes.draw do
 
 
   
+  resources :line_orders
+
+
+  resources :orders
+
+
   #resources :orders
 
 

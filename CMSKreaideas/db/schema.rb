@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904175111) do
+ActiveRecord::Schema.define(:version => 20130905235800) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at",   :null => false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20130904175111) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "quantity",   :default => 1
+    t.integer  "order_id"
+  end
+
+  create_table "line_orders", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.float    "subtotal"
+    t.float    "total"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "members", :force => true do |t|
@@ -81,15 +91,12 @@ ActiveRecord::Schema.define(:version => 20130904175111) do
   end
 
   create_table "orders", :force => true do |t|
-    t.string   "new"
-    t.integer  "cart_id"
-    t.string   "ip_address"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "card_type"
-    t.date     "card_expires_on"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "member_id"
+    t.date     "OrderDate"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.float    "total"
+    t.float    "subtotal"
   end
 
   create_table "productimages", :force => true do |t|
