@@ -44,7 +44,6 @@ class CartsController < ApplicationController
   # POST /carts
   # POST /carts.json
   def create
-    puts"777777777777777777777777777777777777777777777777777777777777777777777777"
     @cart = Cart.new(cart_params)
     @cart.member_id=current_member.id
     respond_to do |format|

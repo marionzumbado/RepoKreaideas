@@ -5,17 +5,22 @@ CMSKreaideas::Application.routes.draw do
 
 
   
-  resources :line_orders
 
 
-  resources :orders
+  resources :payment_notifications
+
+
+  resources :orders do
+    #post 'test' 
+    post '/test', to: 'orders#test'
+  end
 
 
   #resources :orders
 
 
 
-  resources :orders 
+ # resources :orders 
   resources :line_items
 
 

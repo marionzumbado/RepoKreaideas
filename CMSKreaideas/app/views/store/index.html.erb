@@ -15,6 +15,7 @@
   	}
   );
  </script>
+
 Id de carito en BD: <%=session[:cart]%>
 <div id="user_nav">
 	<% if member_signed_in?%>
@@ -36,7 +37,12 @@ Id de carito en BD: <%=session[:cart]%>
 	<%= render @cart %>
 
 
-<%= button_to "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif", orders_path %>
+<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @cart.paypal_url(orders_url)%>
+
+
+
+
+
 
 
 <%end%>

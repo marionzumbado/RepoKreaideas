@@ -22,7 +22,8 @@ class Cart < ActiveRecord::Base
   			:cmd => '_cart',
   			:upload => 1,
   			:return => return_url,
-  			:invoice => id
+  			:invoice => id,
+        :rm=>2
 
   		}
   		line_items.each_with_index do |item, index|
@@ -34,7 +35,7 @@ class Cart < ActiveRecord::Base
   				})
   		end
 
-  		"https://www.sandbox.paypal.com/cgi-bin/webscr?"+values.map {|k,v| "#{k}=#{v}"}.join("&")
+  		"https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
 
   	end
 

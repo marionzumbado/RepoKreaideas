@@ -17,23 +17,41 @@ class ApplicationController < ActionController::Base
  private
 
  	def current_cart
-		#Cart.find(session[:cart])
-		#cart=Cart.create
+		#@cartid=current_member.cart
+		#Cart.find(@cartid)
+		#rescue ActiveRecord::RecordNotFound
+		#	cart = Cart.create
+		#	cart.member_id=current_member.id
+		#	cart.member=current_member
+		#	cart.save
+		#	session[:cart] = cart.id
+		#	cart
 		@cartid=current_member.cart
-		Cart.find(@cartid)
-		rescue ActiveRecord::RecordNotFound
+		puts"1111111111111111111111111111111111111#{@cartid}"
+		if session[:cart]
+    		@current_cart ||= Cart.find(@cartid)
+    		session[:cart] = nil if @current_cart.purchased_at
+  		end
+  		if session[:cart].nil?
+    		@current_cart = Cart.create!
+    		session[:cart] = cart.id
+  		end
+  		@current_cart
+  		rescue ActiveRecord::RecordNotFound
 			cart = Cart.create
 			cart.member_id=current_member.id
 			cart.member=current_member
 			cart.save
-
-
-			#cart = Cart.new(cart_params)
-    		#cart.member_id=current_member.id
-    		#cart.save
 			session[:cart] = cart.id
 			cart
+
+
 	end
+
+
+
+
+
 
  	#def current_session_cart
 	#	SessionCart.find(session[:session_cart])
