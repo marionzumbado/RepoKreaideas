@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
 
 
   
+  #skip_before_filter :verify_authenticity_token, :only => [:create]
 
   def add_line_items_from_cart(cart)
 	cart.line_items.each do |item|
