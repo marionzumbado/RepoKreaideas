@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906215417) do
+ActiveRecord::Schema.define(:version => 20130909223725) do
 
   create_table "carts", :force => true do |t|
+    t.integer  "member_id"
+    t.date     "purshased_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "member_id"
-    t.date     "purchased_at"
   end
 
   create_table "countries", :force => true do |t|
@@ -94,8 +94,9 @@ ActiveRecord::Schema.define(:version => 20130906215417) do
     t.text     "params"
     t.integer  "cart_id"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "transaction_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "productimages", :force => true do |t|

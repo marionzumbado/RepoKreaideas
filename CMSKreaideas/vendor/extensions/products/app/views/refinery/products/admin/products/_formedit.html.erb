@@ -13,18 +13,18 @@
     },
     delete : function(){
       //funcion para borrarle un archivo de descarga a un producto
-      this.ui.product_delete_attach.checked=true;
       var delete_file_link=document.getElementById("delete_file_link");
       var change_file_link=document.getElementById("change_file_link");
+      this.ui.product_delete_attach.checked=true;     
       this.ui.fileform.removeChild(delete_file_link);
       this.ui.fileform.removeChild(change_file_link); 
       KI.File.create_addfile_link(1);
     },
     new : function(){
     //funcion para agregar un archivo a un producto 
-      this.ui.product_delete_attach.checked=false;
-      KI.File.create_product_attach();
       var addfile=document.getElementById("addfile");
+      this.ui.product_delete_attach.checked=false;
+      KI.File.create_product_attach(); 
       this.ui.fileform.removeChild(addfile);
       KI.File.create_cancel_browse(0);
      
@@ -77,10 +77,10 @@
   },
   create_delete_and_chenge_links : function(){
     var delete_file_link= document.createElement("a");
+    var change_file_link= document.createElement("a");
     delete_file_link.innerHTML = "Eliminar";
     delete_file_link.id="delete_file_link";
-    delete_file_link.setAttribute("onclick","KI.File.delete();");
-    var change_file_link= document.createElement("a");
+    delete_file_link.setAttribute("onclick","KI.File.delete();");   
     change_file_link.innerHTML = "Cambiar";
     change_file_link.id="change_file_link";
     change_file_link.setAttribute("onclick","KI.File.change();");  
@@ -94,13 +94,15 @@
 
 //script para traer las categorias y las subcategorias de la primera cateogoria
     $(document).ready(function(){
+      var id_value_string = $(this).val();
+      var row = "<option value=\"" + "" + "\">" + "" + "</option>";
       KI.File.initialize();
          $("select#category_category_id").change(function(){
-            var id_value_string = $(this).val();
+            //var id_value_string = $(this).val();
             if (id_value_string == "") {
                 // if the id is empty remove all the sub_selection options from being selectable and do not do any ajax
                 $("select#product_subcategory_id").remove();
-                var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                //var row = "<option value=\"" + "" + "\">" + "" + "</option>";
                 $(row).appendTo("product_subcategory_id");
             }
             else {
@@ -128,7 +130,7 @@
 
                 
      
-                var id_value_string= $("select#product_subcategory_id").val();
+                //var id_value_string= $("select#product_subcategory_id").val();
                // Send the request and update sub category dropdown
                 $.ajax({
                     dataType: "json",

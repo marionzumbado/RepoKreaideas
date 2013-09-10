@@ -35,12 +35,24 @@ Id de carito en BD: <%=session[:cart]%>
 </br></br></br></br>
 <%unless current_member.nil?%>
 	<%= render @cart %>
-
-
-<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @cart.paypal_url(orders_url)%>
+  <%= @current_cart.purshased_at %>
 
 
 
+	<%= form_tag "https://www.sandbox.paypal.com/cgi-bin/webscr" do %>
+  <%= hidden_field_tag :cmd, "_s-xclick" %>
+  <%= hidden_field_tag :encrypted, @cart.paypal_encrypted(store_index_url, payment_notifications_url) %>
+  <p><%= submit_tag "Checkout" %></p>
+<% end %>
+
+
+
+<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @cart.paypal_encrypted(store_index_url, payment_notifications_url)%>
+
+
+
+
+<%=Rails.root%>
 
 
 
