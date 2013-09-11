@@ -17,6 +17,7 @@ gem 'devise',:git => "https://github.com/marionzumbado/Devise.git"
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'capistrano-rails'
 end
 
 

@@ -5,7 +5,7 @@ set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
 
-set :application, "cecropia-site"
+set :application, "kreaideas"
 set :user, "cec_user"
 
 set :scm, :git

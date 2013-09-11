@@ -74,6 +74,14 @@ GEM
     babosa (0.3.11)
     bcrypt-ruby (3.1.2)
     builder (3.0.4)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capistrano-rails (0.0.7)
+      capistrano
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -98,6 +106,7 @@ GEM
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       paper_trail (~> 2)
+    highline (1.6.19)
     hike (1.2.3)
     httparty (0.11.0)
       multi_json (~> 1.0)
@@ -117,6 +126,13 @@ GEM
     multi_json (1.7.9)
     multi_xml (0.5.5)
     nested_form (0.3.2)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.5.10)
     orm_adapter (0.4.0)
     paper_trail (2.7.2)
@@ -241,6 +257,7 @@ PLATFORMS
 DEPENDENCIES
   activemerchant
   aws-sdk
+  capistrano-rails
   coffee-rails (~> 3.2.1)
   devise!
   httparty
